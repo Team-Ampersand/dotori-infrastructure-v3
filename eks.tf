@@ -1,5 +1,5 @@
 resource "aws_iam_role" "eks_cluster" {
-  name = "eks-cluster"
+  name = local.cluster_name
 
   assume_role_policy = <<POLICY
 {
@@ -25,7 +25,7 @@ resource "aws_iam_role_policy_attachment" "amazon_eks_cluster_policy" {
 
 
 resource "aws_eks_cluster" "eks" {
-  name = "dotori-eks"
+  name = local.cluster_name
 
   role_arn = aws_iam_role.eks_cluster.arn
 
@@ -129,3 +129,4 @@ resource "aws_eks_node_group" "nodes_general" {
     aws_iam_role_policy_attachment.amazon_ec2_container_registry_read_only,
   ]
 }
+
