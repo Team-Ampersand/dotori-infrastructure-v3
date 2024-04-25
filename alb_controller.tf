@@ -67,4 +67,5 @@ resource "helm_release" "release" {
       value = set.value
     }
   }
+  
 }
